@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}GETMAIL{% endblock %}
+
+{% block content %}
+    {% if result == True %}
+        <h1 id="titulo"> SERVEI CONSULTA MAIL</h1>
+        {% if correu == "NOTROBAT" %}
+            <h2>El nom <b>{{ nom }}</b> no l'hem trobat a les nostres dades.</h2>
+        {% else %}
+            <h2>El correu per <b>{{ nom }}</b> és: <b>{{ correu }}</b> </h2>
+        {% endif %}
+        <h4 class="text-enlace">
+            Pots fer una nova consulta a l'enllaç <a href="{{url_for('getmail')}}">GETMAIL</a>,
+        </h4>
+        <h4 class="text-enlace2">
+            o pots afegir nous correus a l'enllaç <a href="{{url_for('addmail')}}" target="_blank">ADDMAIL</a>
+        </h4>
+    {% elif result == False %}
+        <h1 id="titulo"> SERVEI CONSULTA MAIL</h1>
+        <h3> Introdueix el nom per conèixer el correu electrònic</h3>
+        <form action = "{{url_for('getmail')}}" method = "post">
+            <label for="nom" class="form-label required">Nom:</label>
+            <p><input type="text" name="nom" id="nom"  class="form-control" required/></p>
+            <p><input type = "submit" value = "CONSULTA" class="btn btn-primary"/></p>
+        </form>
+        <h4 class="text-enlace">
+            Pots afegir nous correus a l'enllaç <a href="{{url_for('addmail')}}" target="_blank">ADDMAIL</a>
+        </h4>
+    {% endif %}
+{% endblock %}
