@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}RESULTADDMAIL{% endblock %}
+
+{% block content %}
+    <h1 id="titulo"> SERVEI ACTUALITZACIÓ MAIL</h1>
+  {% if result_msg == "JAEXISTEIX" %}
+    <h2>El correu pel nom <b>{{ nom }}</b> ja estava a les nostres dades.</h2>
+  {% elif result_msg == "MODIFICAT" %}
+    <h2>El correu pel nom <b>{{ nom }}</b> ja estava i ha quedat modificat a: <b>{{ correu }}</b></h2>
+  {% else %}
+    <h2>El correu pel nom <b>{{ nom }}</b> ha esta afegit com: <b>{{ correu }}</b></h2>
+  {% endif %}
+  <h4 class="text_enlace">
+    Pots afegir més correus a l'enllaç <a href="{{url_for('addmail')}}">ADDMAIL</a>,
+  </h4>
+  <h4 class="text-enlace2">
+    o pots consultar els correus a l'enllaç <a href="{{url_for('getmail')}}" target="_blank">GETMAIL</a>
+  </h4>
+{% endblock %}
